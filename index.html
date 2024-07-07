@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Tool</title>
+
+    <style>
+        body {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .app-title {
+            text-align: center;
+            color: black;
+            font-size: 3em;
+            margin-top: 30px;
+        }
+
+        .input-text {
+            display: block;
+            margin: 20px auto;
+            height: 200px;
+            width: 80%;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid black;
+            font-size: 1.2em;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .result-text {
+            text-align: center;
+            color: #34495e;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            border-radius: 20px;
+            background: pink;
+            color: black;
+            text-align: center;
+            font-size: 1.2em;
+            padding: 15px;
+            width: 180px;
+            cursor: pointer;
+            margin: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background:pink;
+        }
+
+        .btn span {
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .btn span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.3s;
+        }
+
+        .btn:hover span {
+            padding-right: 25px;
+        }
+
+        .btn:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .action-button {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="app-title">Text Tool</h1>
+    <textarea class="input-text" id="input-text"></textarea>
+    <p id="result-text" class="result-text"></p>
+    <div style="text-align: center;">
+        <button class="btn action-button" onclick="giveActionResult('uppercase')"><span>UPPERCASE</span></button>
+        <button class="btn action-button" onclick="giveActionResult('lowercase')"><span>lowercase</span></button>
+        <button class="btn action-button" onclick="giveActionResult('wordcount')"><span>Wordcount</span></button>
+        <button class="btn action-button" onclick="giveActionResult('charcount')"><span>Charactercount</span></button>
+    </div>
+    <script>
+        function giveActionResult(action) {
+            const inputElement = document.getElementById("input-text");
+            const resultElement = document.getElementById("result-text");
+
+            if (action === 'uppercase') {
+                resultElement.innerText = inputElement.value.toUpperCase();
+            } else if (action === 'lowercase') {
+                resultElement.innerText = inputElement.value.toLowerCase();
+            } else if (action === 'wordcount') {
+                resultElement.innerText = 'Total Words: ' + inputElement.value.split(/\s+/).filter(Boolean).length;
+            } else {
+                resultElement.innerText = 'Total Characters: ' + inputElement.value.length;
+            }
+        }
+    </script>
+</body>
+
+</html>
